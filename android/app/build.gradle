@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.libraryapp"
+        applicationId "com.libraryappdemo.huawei"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

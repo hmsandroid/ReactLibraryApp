@@ -1,4 +1,4 @@
-package com.libraryapp;
+package com.libraryappdemo.huawei;
 
 import android.app.Application;
 import android.content.Context;

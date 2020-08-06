@@ -1,4 +1,4 @@
-package com.libraryapp;
+package com.libraryappdemo.huawei;
 
 import com.facebook.react.ReactActivity;
 
