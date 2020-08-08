@@ -2,33 +2,34 @@
   libraryApp by Onur
  */
 
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
+import React, { useEffect, useState } from 'react';
+import { NativeModules } from 'react-native';
+import { AppContext } from './src/AppContext';
+import Account from './src/account';
 
-} from 'react-native';
+const App = () => {
+  const [isHmsAvailable, setIsHmsAvailable] = useState();
+  const [isReady, setIsReady] = useState(false);
 
-import {
+  useEffect(() => {
+    async function checkHmsAvailability() {
+      const isHmsAvailable = await NativeModules.HmsUtils.isHmsAvailable();
+      setIsHmsAvailable(isHmsAvailable);
+      setIsReady(true);
+    }
 
-  Colors,
- 
-} from 'react-native/Libraries/NewAppScreen';
+    checkHmsAvailability();
+  }, []);
 
-const Hello = () => {
   return (
-    <View>
-      <Text style={styles.sectionTitle}>LibraryApp</Text>
-    </View>
+    <>
+      {isReady && (
+        <AppContext isHmsAvailable={isHmsAvailable}>
+          <Account />
+        </AppContext>
+      )}
+    </>
   );
-}
-const styles = StyleSheet.create({
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  }
-});
+};
 
-export default Hello;
+export default App;
