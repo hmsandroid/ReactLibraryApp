@@ -12,7 +12,7 @@ import com.facebook.soloader.SoLoader;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-
+/*import com.huawei.hms.push.RNHwPushPackage;*/
 /*import com.huawei.hms.rn.account.HmsAccountPackage;*/
 
 import rnhms.RNHMSPackage;
@@ -33,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
                     // Packages that cannot be autolinked yet can be added manually here, for example:
                     // packages.add(new MyReactNativePackage());
                     packages.add(new RNHMSPackage());
+                    //packages.add(new RNHwPushPackage());
                     return packages;
                 }
 

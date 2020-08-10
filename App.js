@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { NativeModules } from 'react-native';
 import { AppContext } from './src/AppContext';
 import Account from './src/account';
-
+import Push from './src/push';
 const App = () => {
   const [isHmsAvailable, setIsHmsAvailable] = useState();
   const [isReady, setIsReady] = useState(false);
@@ -26,6 +26,7 @@ const App = () => {
       {isReady && (
         <AppContext isHmsAvailable={isHmsAvailable}>
           <Account />
+          <Push/>
         </AppContext>
       )}
     </>
