@@ -1,36 +1,21 @@
-/**
-  libraryApp by Onur
- */
 
-import React, { useEffect, useState } from 'react';
-import { NativeModules } from 'react-native';
-import { AppContext } from './src/AppContext';
-import Account from './src/account';
-import Push from './src/push';
-const App = () => {
-  const [isHmsAvailable, setIsHmsAvailable] = useState();
-  const [isReady, setIsReady] = useState(false);
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import WelcomeScreen from './app/src/screens/WelcomeScreen';
+import MyBookScreen from './app/src/screens/MyBookScreen';
 
-  useEffect(() => {
-    async function checkHmsAvailability() {
-      const isHmsAvailable = await NativeModules.HmsUtils.isHmsAvailable();
-      setIsHmsAvailable(isHmsAvailable);
-      setIsReady(true);
-    }
+const Stack = createStackNavigator();
 
-    checkHmsAvailability();
-  }, []);
-
+const AppNavigationContainer = () => {
   return (
-    <>
-      {isReady && (
-        <AppContext isHmsAvailable={isHmsAvailable}>
-          <Account />
-          <Push/>
-        </AppContext>
-      )}
-    </>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="MyBook" component={MyBookScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-export default App;
+export default AppNavigationContainer;
