@@ -109,7 +109,7 @@ public class RNHMSLogin extends ReactContextBaseJavaModule {
     public void logout() {
         if (this.checkActivity(this.activity, null)) {
             this.mSignInClient.signOut();
-            Toast.makeText(getReactApplicationContext(), "Your HMS Account has logged out~~", Toast.LENGTH_LONG).show();
+            Toast.makeText(getReactApplicationContext(), "HMS Account has logged out", Toast.LENGTH_LONG).show();
         }
     }
 
