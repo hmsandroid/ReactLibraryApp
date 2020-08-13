@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { AppRegistry, Text, StyleSheet, View, Button, TouchableOpacity, FlatList, Image } from "react-native";
-
+import {HMSSplash} from "react-native-hms-ads";
 
 export default class MyBooks extends Component {
   constructor() {
@@ -11,12 +11,12 @@ export default class MyBooks extends Component {
   }
   renderItem = ({ item }) => {
     return (
-      <View style={{ flex: 1, flexDirection: 'row',marginVertical:20}}>
+      <View style={{ flex: 1, flexDirection: 'row', marginVertical: 20 }}>
         <Image style={{ width: 100, height: 100 }}
           source={{ uri: item.image }}
           resizeMode='contain' />
         <View style={{ flex: 1, justifyContent: "center" }}>
-          <Text style={{marginBottom:15}}>
+          <Text style={{ marginBottom: 15 }}>
             {item.book_title}
           </Text>
           <Text>
@@ -26,9 +26,9 @@ export default class MyBooks extends Component {
       </View>
     )
   }
-  renderSeparator = ()=>{
-    return(
-      <View style={{height:1 ,width:'100%' ,backgroundColor:'black'}}>
+  renderSeparator = () => {
+    return (
+      <View style={{ height: 1, width: '100%', backgroundColor: 'black' }}>
 
       </View>
     );
@@ -45,6 +45,9 @@ export default class MyBooks extends Component {
       .catch((error) => {
         console.log(error)
       })
+  }
+  UNSAFE_componentWillMount() {
+    HMSSplash.show();
   }
   render() {
     return (
