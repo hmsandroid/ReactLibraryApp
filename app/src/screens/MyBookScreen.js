@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { AppRegistry, Text, StyleSheet, View, Button, TouchableOpacity, FlatList, Image } from "react-native";
-import {HMSSplash} from "react-native-hms-ads";
-
+import { AppRegistry, Text, StyleSheet, View, Button, TouchableOpacity, FlatList, Image, ToastAndroid } from "react-native";
+import { HMSSplash } from "react-native-hms-ads";
+import haInterface from 'react-native-ha-interface';
 export default class MyBooks extends Component {
   constructor() {
     super()
@@ -9,9 +9,30 @@ export default class MyBooks extends Component {
       dataSource: []
     }
   }
+  sendEvent = (name) => {
+    /*
+     * You can trigger firebase or hms analytics conditionally.
+     *
+     * Assume that we imported analytics
+     * from @react-native-firebase/analytics;
+     *
+     * isHmsAvailable
+     *   ? analytics.logEvent(eventName, object)
+     *   : haInterface.onEvent(eventName, object)
+     *
+     */
+    haInterface.onEvent('testEvent', {
+      testString: name,
+      testInt: 666,
+      testDouble: 2.2,
+      testBoolean: false,
+    });
+    alert('Test Event Sent!');
+  };
   renderItem = ({ item }) => {
     return (
-      <View style={{ flex: 1, flexDirection: 'row', marginVertical: 20 }}>
+      <TouchableOpacity style={{ flex: 1, flexDirection: 'row', marginVertical: 20 }}
+        onPress={()=>this.sendEvent(item.book_title)}>
         <Image style={{ width: 100, height: 100 }}
           source={{ uri: item.image }}
           resizeMode='contain' />
@@ -23,7 +44,7 @@ export default class MyBooks extends Component {
             {item.author}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
   renderSeparator = () => {

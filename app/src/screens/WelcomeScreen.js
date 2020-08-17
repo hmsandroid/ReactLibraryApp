@@ -3,6 +3,9 @@ import { Text, StyleSheet, View, Button, TouchableOpacity, ImageBackground, Imag
 import { color } from "react-native-reanimated";
 import { AppContext } from '../AppContext';
 import Account from '../account';
+import { DEFAULT_LOG, DEFAULT_TOPIC, RESULT_CODE_SUCCESS } from '../push/constants';
+
+
 const WelcomeScreen = ({ navigation }) => {
 
   const [isHmsAvailable, setIsHmsAvailable] = useState();
@@ -18,6 +21,20 @@ const WelcomeScreen = ({ navigation }) => {
     checkHmsAvailability();
   }, []);
 
+  const [log, setLog] = useState(DEFAULT_LOG);
+  
+  const getToken = () => {
+    NativeModules.RNHmsInstanceId.getToken((result, token) => {
+      let msg = log;
+      if (result == RESULT_CODE_SUCCESS) {
+        msg = msg + 'getToken result:' + token + '\n';
+      } else {
+        msg = msg + 'getToken exception, error:' + token + '\n';
+      }
+      setLog(msg);
+      console.log(msg);
+    });
+  };
 
   const [user, setUser] = useState(null);
 
@@ -36,16 +53,17 @@ const WelcomeScreen = ({ navigation }) => {
     NativeModules.HMSLogin.logout();
     setUser(null);
   };
+
+
   const Login = () => {
     return <ImageBackground
       style={styles.background}
       source={require("../assets/images/welcome.jpg")}>
-
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/images/logo.png")} />
         <Text style={styles.slogan}>Manage your library easily</Text>
       </View>
-      <TouchableOpacity style={styles.loginButton} onPress={() => handleLogin()}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => {handleLogin(); getToken();}}>
         <Text style={styles.textSign}> Login</Text>
       </TouchableOpacity>
     </ImageBackground>;

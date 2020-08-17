@@ -191,11 +191,14 @@ dependencies {
     /*implementation project(":react-native-hms-account")*/
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'com.huawei.hms:hwid:3.0.3.301'
-    /*implementation project(':react-native-hwpush')*/
+    implementation project(':react-native-hwpush')
 /*    implementation 'com.huawei.agconnect:agconnect-core:1.3.1.300'*/
     implementation 'com.huawei.agconnect:agconnect-core:1.0.0.300'
     //Ads Kit
     implementation project(":react-native-hms-ads")
+/*    //Analytics Kit
+    implementation project(":react-native-ha-interface")*/
+    implementation 'com.huawei.hms:hianalytics:4.0.3.300'
 /*    // HMS Kits
     implementation 'com.huawei.hms:hwid:3.0.3.301'
     implementation 'com.huawei.hms:push:3.0.3.301'

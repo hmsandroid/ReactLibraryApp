@@ -9,6 +9,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.huawei.hianalytics.HaInterfacePackage;
 import com.huawei.hms.rn.ads.RNHMSAdsPackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
                     // packages.add(new MyReactNativePackage());
                     packages.add(new RNHMSPackage());
                     packages.add(new RNHMSAdsPackage());
+/*                    packages.add(new HaInterfacePackage());*/
                     //packages.add(new RNHwPushPackage());
                     return packages;
                 }
