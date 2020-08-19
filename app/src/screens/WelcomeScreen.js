@@ -22,7 +22,7 @@ const WelcomeScreen = ({ navigation }) => {
   }, []);
 
   const [log, setLog] = useState(DEFAULT_LOG);
-  
+
   const getToken = () => {
     NativeModules.RNHmsInstanceId.getToken((result, token) => {
       let msg = log;
@@ -62,8 +62,9 @@ const WelcomeScreen = ({ navigation }) => {
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/images/logo.png")} />
         <Text style={styles.slogan}>Manage your library easily</Text>
+
       </View>
-      <TouchableOpacity style={styles.loginButton} onPress={() => {handleLogin(); getToken();}}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => { handleLogin(); getToken(); }}>
         <Text style={styles.textSign}> Login</Text>
       </TouchableOpacity>
     </ImageBackground>;
@@ -85,6 +86,9 @@ const WelcomeScreen = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.logoutButton} onPress={() => handleLogout()}>
           <Text style={styles.textSign}> Logout</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.crashButton} onPress={() => NativeModules.Crasher.crash()}>
+          <Text style={styles.textSign}> Crash!</Text>
         </TouchableOpacity>
       </ImageBackground>
     );
@@ -131,6 +135,16 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     backgroundColor: "#4ecdc4",
+    marginVertical: 5,
+    borderRadius: 10,
+    opacity: .9
+  },
+  crashButton: {
+    justifyContent: "center",
+    width: "30%",
+    height: 50,
+    alignItems: "center",
+    backgroundColor: "#ff0000",
     marginVertical: 5,
     borderRadius: 10,
     opacity: .9

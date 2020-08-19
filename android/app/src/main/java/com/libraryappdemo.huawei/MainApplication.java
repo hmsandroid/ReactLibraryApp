@@ -36,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
                     // packages.add(new MyReactNativePackage());
                     packages.add(new RNHMSPackage());
                     packages.add(new RNHMSAdsPackage());
+                    packages.add(new CrashManager());
 /*                    packages.add(new HaInterfacePackage());*/
                     //packages.add(new RNHwPushPackage());
                     return packages;
